@@ -1,0 +1,12 @@
+{
+	"appId": "io.ionic.starter3",
+	"appName": "Administracion De Usuarios",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"plugins": {
+		"SplashScreen": {
+		  "launchAutoHide": false,
+		  "showSpinner": false
+		}
+	}
+}

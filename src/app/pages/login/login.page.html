@@ -1,0 +1,45 @@
+
+<ion-content no-scroll class="ioncontent">
+
+  <h1 class="iontittle">Administración De Usuarios</h1>
+  
+  <div class="container"> 
+          <form (ngSubmit)="iniciarSesion()" #f="ngForm">
+              <ion-item class="items">
+                  <ion-label position="floating">
+                      <ion-text color="dark">Correo</ion-text>
+                  </ion-label>
+                  <ion-input style="--color: white" [(ngModel)]="email" name="email" type="text" required></ion-input>
+              </ion-item>
+    
+              <ion-item class="items">
+                <ion-label position="floating">
+                  <ion-text color="dark">Contraseña</ion-text>
+                  </ion-label>
+                  <ion-input style="--color: white" [(ngModel)]="clave" name="clave" type="password" required></ion-input>
+              </ion-item>
+              <img src="../../../assets/images/iconopng.png" class="logo">
+              <ion-button class="botones" expand="block" fill="clear" color="medium"type="submit">
+                  <ion-text color="dark"> Iniciar sesión </ion-text>
+              </ion-button>
+          </form>
+    
+          <ion-spinner *ngIf="this.as.apretado" name="dots" style="display: block; margin:auto;width: 2cm; height: 2cm;"></ion-spinner>
+          
+          <div class="containerButtons">
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="4" >
+                  <mat-slide-toggle class="ionButton" color="primary" [checked]="slideUsuario" (change)="onChangeUsuario($event)">Usuario</mat-slide-toggle>
+              </ion-col>
+              <ion-col size="4">
+                <mat-slide-toggle class="ionButton" color="primary" [checked]="slideAdmin" (change)="onChangeAdmin($event)">Admin</mat-slide-toggle>
+              </ion-col>
+              <ion-col size="4">
+                <mat-slide-toggle class="ionButton" color="primary" [checked]="slideInvitado" (change)="onChangeInvitado($event)">Invitado</mat-slide-toggle>
+              </ion-col>
+              </ion-row>
+            </ion-grid>     
+        </div>
+  </div>
+</ion-content>

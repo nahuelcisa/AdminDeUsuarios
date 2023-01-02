@@ -1,0 +1,22 @@
+      <ion-list style="background-color:rgba(240, 248, 255, 0); margin-top: 0px !important;">
+        <ion-item *ngFor="let item of this.arrayUsuarios" color="dark">
+          <ion-thumbnail  slot="start">
+            <img src="{{item.pathFoto}}"/>
+          </ion-thumbnail >
+            <ion-label color="light">
+              <h2>{{item.nombre}} {{item.apellido}}</h2>
+              <h3>{{item.email}}</h3>
+              <p>{{item.dni}}</p>
+            </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- <ion-card color="dark">
+        <ion-card-header>
+          <ion-card-title>{{item.nombre}} {{item.apellido}}</ion-card-title>
+          <ion-card-subtitle>DNI: {{item.dni}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Correo: {{item.email}}
+        </ion-card-content>
+        <img src="{{item.pathFoto}}" style="object-fit: cover; border-radius: 50%; height: 15rem; width: 15rem;"/>
+      </ion-card> -->

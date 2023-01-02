@@ -1,0 +1,150 @@
+<ion-content noscroll>
+  <div *ngIf="formulario">
+  <img src="{{this.avatar}}" alt="" class="imagen">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" >
+      <ion-icon name="reorder-four-outline" style="width: 35px; height: 35px;"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button color="dark"><ion-icon name="person-add-outline" style="width: 25px; height: 25px;" (click)="agregarUsuario()"></ion-icon></ion-fab-button>
+      <ion-fab-button color="dark"><ion-icon name="camera-outline" style="width: 25px; height: 25px;" (click)="agregarFoto()"></ion-icon></ion-fab-button>
+      <ion-fab-button color="dark"><ion-icon name="qr-code-outline" style="width: 25px; height: 25px;" (click)="escanear()"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button color="dark"><ion-icon name="people-outline" style="width: 25px; height: 25px;" (click)="listadoAdministrador()"></ion-icon></ion-fab-button>
+      <ion-fab-button color="dark"><ion-icon name="exit-outline" (click)="logOut()" style="width: 25px; height: 25px;"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <div style="width: 100%; height: 100%;">
+    <form (ngSubmit)="altaUsuario()" #f="ngForm" style="width: 100%;">
+      <ion-grid style="height: 100%; display: flex; flex-flow: column;">
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+              <ion-item class="items" style="margin-top: 1rem;">
+                <ion-label position="floating">
+                    <ion-text color="light">Apellido/s</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="apellido" name="apellido" type="text"  required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-item class="items">
+                <ion-label position="floating">
+                    <ion-text color="light">Nombre/s</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="nombre" name="nombre" type="text" required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-item class="items">
+                <ion-label position="floating">
+                    <ion-text color="light">DNI</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="dni" name="dni" type="number" min="20000000" required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-item class="items">
+                <ion-label position="floating">
+                    <ion-text color="light">Correo</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="correo" name="email" type="text" required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-item class="items">
+                <ion-label position="floating">
+                    <ion-text color="light">Clave</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="clave" name="clave" type="password" minlength="6" required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-item style="--background:transparent;">
+                <ion-label position="floating">
+                    <ion-text color="light">Reingrese clave</ion-text>
+                </ion-label>
+                <ion-input style="--color: black" [(ngModel)]="claveR" name="claveR" type="password" minlength="6" required></ion-input>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      <!-- <ion-grid style="display: flex; flex-flow: column;">
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-button class="botones" expand="block" color="primary" type="submit" (click)="agregarFoto()">
+              <ion-text color="light"> Subir foto</ion-text>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="botones" expand="block" color="primary"type="submit" (click)="escanear()">
+              <ion-text color="light"> Escanear DNI </ion-text>
+            </ion-button>
+          
+          </ion-col>
+          <ion-col>
+            <ion-button class="botones" expand="block" color="success" type="submit" (click)="agregarUsuario()">
+              <ion-text color="light"> Añadir usuario </ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-button class="botones" expand="block" color="warning" type="submit" (click)="listadoAdministrador()">
+              <ion-text color="light"> Listado Usuarios</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row style="flex-grow: 1;">
+          <ion-col>
+            <ion-button class="botones" expand="block" color="danger" type="submit" (click)="logOut()">
+              <ion-text color="light"> Cerrar Sesion</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+    </form>
+  </div>
+  <ion-spinner *ngIf="apretado" name="crescent" style="display: block; position: inherit; margin:auto;width: 3cm; height: 4cm; margin-top: 1.5rem; z-index: 101;" color="dark"></ion-spinner>
+</div>
+
+  <div *ngIf="!esAdministrador">
+     <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="dark">
+      <ion-fab-button color="dark" >
+        <ion-icon name="reorder-four-outline" style="width: 35px; height: 35px;"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="start" color="dark">
+        <ion-fab-button color="dark"><ion-icon name="exit-outline"  (click)="logOut()"></ion-icon></ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+
+    <app-listado></app-listado>
+    <ion-spinner *ngIf="apretado" name="crescent" style="display: block; position: inherit; margin:auto;width: 3cm; height: 4cm; margin-top: 1.5rem; z-index: 101;" color="primary"></ion-spinner>
+  </div>
+
+  <div *ngIf="listadoAdmin">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="dark">
+      <ion-fab-button color="dark" >
+        <ion-icon name="reorder-four-outline" style="width: 35px; height: 35px;"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="start" color="dark">
+        <ion-fab-button color="dark"><ion-icon name="person-add-outline"  (click)="backForm()"></ion-icon></ion-fab-button>
+        <ion-fab-button color="dark"><ion-icon name="exit-outline" (click)="logOut()"></ion-icon></ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <app-listado></app-listado>
+    <ion-spinner *ngIf="apretado" name="crescent" style="display: block; position: inherit; margin:auto;width: 3cm; height: 4cm; margin-top: 1.5rem; z-index: 101;" color="primary"></ion-spinner>
+  </div>
+
+</ion-content>
